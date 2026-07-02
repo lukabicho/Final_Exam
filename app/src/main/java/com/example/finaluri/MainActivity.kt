@@ -203,8 +203,7 @@ fun DashboardScreen(uiState: TaskUiState, onCategoryClick: (String) -> Unit, onA
         when (uiState) {
             is TaskUiState.Loading -> {
                 Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
-                    CircularProgressIndicator() // პროგრესის ინდიკატორი
-                }
+                    CircularProgressIndicator() 
             }
             is TaskUiState.Error -> {
                 Box(modifier = Modifier.weight(1f).fillMaxWidth(), contentAlignment = Alignment.Center) {
@@ -257,7 +256,6 @@ fun TaskListScreen(uiState: TaskUiState, category: String?, onBack: () -> Unit, 
             }
             is TaskUiState.Success -> {
                 val allTasks = uiState.tasks
-                // ვცდილობთ ფილტრაციას, თუ არაფერია - ვაჩვენებთ ყველას
                 val filteredTasks = allTasks.filter { it.category.contains(category ?: "", ignoreCase = true) }
                 val tasksToShow = if (filteredTasks.isEmpty()) allTasks else filteredTasks
 
@@ -270,9 +268,9 @@ fun TaskListScreen(uiState: TaskUiState, category: String?, onBack: () -> Unit, 
                         items(tasksToShow) { task ->
                             Card(modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp).clickable { onTaskClick(task.title) }) {
                                 ListItem(
-                                    headlineContent = { Text(task.category) }, // აჩვენებს ქვეყანას (Georgia და ა.შ.)
+                                    headlineContent = { Text(task.category) },
                                     supportingContent = { Text("Status: ${if(task.status) "Done" else "Active"} | Prio: ${task.priority}") },
-                                    overlineContent = { Text(task.title) } // აჩვენებს ID-ს
+                                    overlineContent = { Text(task.title) }
                                 )
                             }
                         }
