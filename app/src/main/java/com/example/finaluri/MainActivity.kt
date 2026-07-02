@@ -40,7 +40,6 @@ import retrofit2.http.POST
 enum class TaskPriority { LOW, MEDIUM, HIGH }
 enum class TaskStatus { TODO, IN_PROGRESS, DONE }
 
-// შეცვალეთ ეს ნაწილი
 data class TaskEntity(
     val title: String,
     val description: String,
